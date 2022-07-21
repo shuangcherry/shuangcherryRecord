@@ -1,0 +1,96 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      img {
+        width: 600px;
+        height: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <img
+        src=""
+        class="image-item"
+        lazyload="true"
+        data-original="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fdingyue.ws.126.net%2F2020%2F0515%2F465567a6j00qadpfz001cc000hs00b4c.jpg&refer=http%3A%2F%2Fdingyue.ws.126.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659577188&t=2463dd3d33de4faafe0015477c745f6b"
+      />
+      <img
+        src=""
+        class="image-item"
+        lazyload="true"
+        data-original="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.jj20.com%2Fup%2Fallimg%2F4k%2Fs%2F02%2F2109242306111155-0-lp.jpg&refer=http%3A%2F%2Fimg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659577178&t=bffae27643f3570ab1206006a80a3d8d"
+      />
+      <img
+        src=""
+        class="image-item"
+        lazyload="true"
+        data-original="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.jj20.com%2Fup%2Fallimg%2F1114%2F0G020114924%2F200G0114924-1-1200.jpg&refer=http%3A%2F%2Fimg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659577178&t=b21bead69f8bc02d655e375e3bac0078"
+       />
+       <img
+        src=""
+        class="image-item"
+        lazyload="true"
+        data-original="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.jj20.com%2Fup%2Fallimg%2Ftp09%2F21031FKU44S6-0-lp.jpg&refer=http%3A%2F%2Fimg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659577178&t=f1a5af6e5b2bf90b3336a29abc0f8b11"
+       />
+       <img
+        src=""
+        class="image-item"
+        lazyload="true"
+        data-original="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic.jj20.com%2Fup%2Fallimg%2F1114%2F0I120152936%2F200I1152936-5-1200.jpg&refer=http%3A%2F%2Fpic.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659577178&t=077fcbf1ed416efddb51b2375995c805"
+       />
+       <img
+        src=""
+        class="image-item"
+        lazyload="true"
+        data-original="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.jj20.com%2Fup%2Fallimg%2F4k%2Fs%2F02%2F2109242312005c1-0-lp.jpg&refer=http%3A%2F%2Fimg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659577178&t=c927ca0809db10e234af76cde065f063"
+       />
+       <img
+        src=""
+        class="image-item"
+        lazyload="true"
+        data-original="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.jj20.com%2Fup%2Fallimg%2F1113%2F052420110515%2F200524110515-11-1200.jpg&refer=http%3A%2F%2Fimg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659577178&t=58843a8e1481ae77a8ea57b728761397"
+       />
+       <img
+        src=""
+        class="image-item"
+        lazyload="true"
+        data-original="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.jj20.com%2Fup%2Fallimg%2Ftp06%2F20111116192A364-0-lp.jpg&refer=http%3A%2F%2Fimg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659577178&t=143e3c7adb4a82675f581496ab085215"
+       />
+       <!-- <img
+        src=""
+        class="image-item"
+        lazyload="true"
+        data-original=""
+       /> -->
+    </div>
+    <script>
+      var viewHeight = document.body.clientHeight;
+      console.log(viewHeight,11)
+      //获取可视区高度
+      function lazyload() {
+        var list = document.querySelectorAll("img[data-original][lazyload]");
+        list.forEach((item) => {
+          if (item.dataset.original === "") return;
+          var rect = item.getBoundingClientRect(); // 获得图片相对浏览器视窗的位置
+          console.log(rect)
+          if (rect.bottom >= 0 && rect.top < viewHeight) {
+            var img = new Image();
+            img.src = item.dataset.original;
+            img.onload = function () {
+              item.src = img.src;
+            };
+            item.removeAttribute("data-original"); //移除属性，下次不再遍历
+            item.removeAttribute("lazyload");
+          }
+        });
+      }
+      lazyload(); //刚开始还没滚动屏幕时，要先触发一次函数，初始化首页的页面图片
+      document.addEventListener("scroll", lazyload);
+    </script>
+  </body>
+</html>

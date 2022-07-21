@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <script type="module">
+            import { effect, reactivity } from './index.js';
+            let data = reactivity({name:'aaa', age:10, address:'武汉'});
+            effect(() => {
+                console.log('我叫' + data.name + '我的年龄是'+data.age)
+                effect(() => {
+                    console.log('我的地址是' + data.address);
+                })
+            })
+            setTimeout(()=>{
+                // data.name = 'hh';
+                data.address = '上海';
+            },2000)
+        </script>
+    </body>
+    
+</html>

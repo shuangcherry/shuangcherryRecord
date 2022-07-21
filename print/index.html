@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .title{
+            font-size:22px;
+            color:aqua;
+        }
+        .list{
+            background-color:#33a9ff;
+            border:1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+   <div id="printId">
+        <div class="title">学习打印</div>
+        <img src="print/img/1.jpg">
+        <div class="list">
+            <ul>
+                <li>早饭</li>
+                <li>中饭</li>
+                <li>晚饭</li>
+            </ul>
+        </div>
+        <div>
+            <input type="checkbox" name="vehicle" value="Bike">I have a bike<br>
+            <input type="checkbox" name="vehicle" value="Car">I have a car
+        </div>
+   </div>
+
+    <script>
+            // setTimeout(()=>{
+            //     window.print();
+            // },1000)
+
+            function onIframePrint(printId) {
+                const printContentHtml = document.getElementById("printId").innerHTML;
+                const iframe = document.createElement("iframe");
+                iframe.setAttribute(
+                    "style",
+                    "position:absolute;width:0px;height:0px;left:-500px;top:-500px;"
+                );
+                document.body.appendChild(iframe);
+                iframe.contentDocument.write(printContentHtml);
+                iframe.contentDocument.close();
+                iframe.contentWindow.print();
+                document.body.removeChild(iframe);
+            }
+            onIframePrint()
+
+    </script>
+</body>
+</html>
