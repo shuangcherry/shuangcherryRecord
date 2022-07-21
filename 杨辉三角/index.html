@@ -1,0 +1,62 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-11-04 09:00:24
+ * @LastEditTime: 2020-11-04 09:33:40
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \days\2020_11_04\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //实现杨辉三角
+        var generate = function(numRows) {
+            let arr = [];
+            let result = [];
+            for(let i = 0;i<numRows;i++){
+                arr = [];
+                for(let j = 0;j <= i ;j++){
+                    if(j === 0){
+                        arr.push(1);
+                    }else if(j === i){
+                        arr.push(1);
+                    }else{
+                        arr.push(result[i-1][j-1]+result[i-1][j]);
+                    }
+                }
+                result.push(arr);
+            }
+            return result;
+        };
+
+        console.log(generate(5));
+
+        //给定数字得到指定数字行的杨辉三角
+        //思路：杨辉三角，每一行都可以由前面一行推出，而且第一行是已知的一个1，所以给定行数rowIndex，可以通过循环得出每一行，但由于题目只需要指定行的结果，所以可以
+        //用两个一维数组来记录上一行的数据和当前行的数据。
+        var getRow = function(rowIndex) {
+            let arr = [],result = [];
+            for(let i = 0;i <= rowIndex;i++){
+                for(let j = 0; j<= i;j++){
+                    if(j === 0){
+                        arr.push(1)
+                    }else if(j === i){
+                        arr.push(1);
+                    }else{
+                        arr.push(result[j-1]+result[j]);
+                    }
+                }
+                result = arr;
+                arr = [];
+            }
+            return result;
+        };
+    </script>
+</body>
+</html>

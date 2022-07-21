@@ -1,0 +1,24 @@
+@charset "utf-8";
+/* CSS Document */
+*{
+	margin:0;
+	padding:0;	
+}
+
+#main{
+   position:relative;	
+}
+
+.box{
+    float:left;
+	padding:15px 0 0 15px;
+}
+
+.image{
+   width:165px;	
+   height:auto;
+   padding:10px;
+   border:solid 1px #C0C0C0;
+   box-shadow:0 0 5px #CCC;
+   border-radius:5px;
+}
