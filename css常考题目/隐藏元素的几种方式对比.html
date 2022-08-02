@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .block1{
+            display:none;
+        }
+        .block1 p{
+            display:block;
+            color:red;
+        }
+        .block2{
+            visibility: hidden;
+        }
+        .block2 p{
+            color:blue;
+            visibility: visible;
+        }
+        .block3{
+            opacity: 0;
+        }
+        .block3 p{
+            color:aquamarine;
+            opacity: 1;
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="block1">
+        <p>111111</p>
+    </div>
+
+    <div class="block2">
+        <p>2222</p>
+    </div>
+    <div class="block3">
+        <p>3333</p>
+    </div>
+    <script>
+        let block1 = document.querySelector('.block1');
+        let block2 = document.querySelector('.block2');
+        let block3 = document.querySelector('.block3');
+        block1.addEventListener('click',click1);
+        block2.addEventListener('click',click1);
+        block3.addEventListener('click',click1);
+        function click1(e){
+            console.log(111)
+            console.log(e.target)
+        }
+
+        /*
+                                                display:none                visibility:hidden                    opacity:0;
+            1.从占据空间来看：                       不占据空间                        占据空间                          占据空间
+            2.从是否响应点击事件来看：                 不响应                          不响应                              响应
+            3.从子元素重新设置样式能否显示来看：        不显示                             显示                            不显示
+
+        */
+    </script>
+</body>
+</html>
