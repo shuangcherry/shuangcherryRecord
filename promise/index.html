@@ -7,14 +7,20 @@
     <title>Document</title>
 </head>
 <body>
-    <script src="./mypromise.js"></script>
+    <!-- <script src="./mypromise.js"></script> -->
     <script>
         let p = new Promise((resolve, reject) => {
-            setTimeout(() => reject(1),0)
+            reject(1);
         })
-        console.log(p)
-        let p1 = p.then().catch(err => console.log(err));
-        console.log(p1)
+
+        let p2 = p.then(res => {
+            console.log(res)
+        }, err => {
+            console.log(err);
+        }).catch( err => {
+            console.log(err, 2);
+        })
+        console.log(p2);
     </script>
 </body>
 </html>
