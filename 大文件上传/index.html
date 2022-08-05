@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="file" id="inputBox"></input>
+    <script>
+        /*
+            前后端实现思路是：
+            因为是大文件，如果直接上传的话，会很慢，导致占用带宽。所以采取的方式是将文件切片，然后如果中途断网之后，下次上传的时候就接着上次没传完的部分继续上传。
+            所以前端需要做的是：
+            1. 监听input的change事件拿到文件， 根据文件内容给每个文件生成唯一的hash值。可以通过 spark-md5 插件来实现。因为分析文件生成hash值这个过程比较耗时，可以单独用web worker来做。
+            2. 切割文件， file对象继承了Blob对象，所以blob上的slice方法可以用于切割文件。因为要实现断点续传，所以要给每个分片都有其对应的id。然后循环发送请求上传每个分片。
+                上传的接口需要设置请求头的 "Content-Type":"multipart/form-data"
+            3. 全部分片上传完毕之后，要通知后台上传结束，后台就可以将所有分片合成一个文件。然后返回给前端上传成功。
+
+            后台需要提供的接口有：
+            1. 根据hash检查文件是否上传接口，如果是上传成功部分分片，要将上传成功分片的信息返回，这样前端可以知道接下来要传那些分片。
+            2. 上传接口。
+            3. 上传成功通知接口。
+        */
+        let inputEle = document.querySelector('#inputBox');
+        let file = null;
+        inputEle.addEventListener('change', function(e, file){
+            file = e.target.file[0];
+        })
+    </script>
+</body>
+</html>
