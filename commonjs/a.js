@@ -1,3 +1,12 @@
-console.log(111);
+let name = require('./b.js');
 
-exports.name = 'aaa';
+console.log('a加载');
+function say() {
+    console.log('hello');
+}
+console.log(name);
+
+setTimeout(() => {
+    console.log(name);
+},3000)
+exports.say = say;
