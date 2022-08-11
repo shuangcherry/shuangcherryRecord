@@ -1,4 +1,3 @@
-//自定义async, await函数
 function _asyncToGenerator (fn){
    return function(){
     let self = this;
