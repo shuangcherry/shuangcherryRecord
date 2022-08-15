@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            height:500px;
+            text-align: center;
+            border: 2px solid blue;
+        }
+        .item-child{
+            font-size:14px;
+            color:blueviolet;
+            border-bottom: 1px solid black;
+            text-align: center;
+            height:40px;
+            line-height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+
+    </div>
+    <script type="module">
+        import VirtualScroll from './vitrualScroll.js';
+        let box = document.getElementById('box');
+        let data = Array.from(new Array(5000)).map((item, index) => {
+            return {
+                index: index,
+                content: `第${index}条数据`
+            }
+        })
+        let vs = new VirtualScroll({
+            el: box,
+            list: data,
+            itemElementGenerator: ({ item }) => {
+                let child = document.createElement('div');
+                child.innerHTML = item.content;
+                child.classList.add('item-child');
+                return child;
+            },
+            itemHeight: 40
+        })
+    </script>
+</body>
+</html>
